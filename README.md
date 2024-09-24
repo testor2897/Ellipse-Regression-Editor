@@ -161,6 +161,7 @@ as well as German csv format (preview is disturbed!):
 Autodetection will detect correct format in most cases.
 
 Parameter files are separated into the parameter and the data point section (don't change headers).
+
 [Sample Parameter](Sample_Data/Para_Custom.csv "")
 
 It is possible to use parameter files as input for data files (**main dialog**).
