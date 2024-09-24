@@ -93,12 +93,6 @@ Next to the Regression results (parameters of regression ellipses) also the geom
 
 $$ \sum_{i=1}^n d_i^2 $$
 
-with 
-
-$$ d_i $$
-
-: distance of data point to ellipse
-
 and the residual error:
 
 $$ \sum_{i=1}^n R_i^2 $$
