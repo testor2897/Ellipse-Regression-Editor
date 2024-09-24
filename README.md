@@ -90,11 +90,11 @@ is divided into 4 areas:
 
 ### Regression results (parameters & errors)
 Next to the Regression results (parameters of regression ellipses) also the geometric Error:
-$\sum_{i=1}^n d_i^2$
+$$\sum_{i=1}^n d_i^2$$
 and the residual error:
-$\sum_{i=1}^n R_i^2$
+$$\sum_{i=1}^n R_i^2$$
 are shown. In order to get comparable redidual errors the coefficients are normalized with:
-$R(x_c, y_c) = 1$
+$$R(x_c, y_c) = 1$$
 
 - Regression results (plots and nearest points on ellipse to data points)
 - Legend (overview about shown algorithms)
