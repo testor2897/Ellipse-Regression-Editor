@@ -74,3 +74,12 @@ In this area you will see a preview of the data points if the are validated (see
 In this are you can edit data points (even scientific format is accepted, commas are translated into points).
 In normal cases the input is validated automatically otherways *Validate Data* command can be issued manually.
 
+### Command buttons
+In this area you can:
+- validate data (check wheter table contains numbers and is complete),
+- load data points from csv- or txt-file (examples below),
+- save data points to csv-file,
+- store current data points as sample (only for this session),
+- start regression and show results (&lt;*ENTER*&gt; key)
+- cancel (exit programm, &lt;*ESC*&gt; key)
+
