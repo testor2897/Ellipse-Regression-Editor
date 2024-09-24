@@ -57,7 +57,7 @@ The EXE was packaged with pyinstaller. There is a spec file for Pyinstaller Pack
 
 ## Main dialog
 The main dialog:
-![GUI](Docu/GUI_Details.png)
+![GUI Details](Docu/GUI_Details.png)
 is divided into 4 areas:
 
 ### Selection area
@@ -85,7 +85,7 @@ In this area you can:
 
 ## Result dialog
 The result dialog:
-![GUI](Docu/Result_Details.png)
+![Result Details](Docu/Result_Details.png)
 is divided into 4 areas:
 
 ### Regression results (parameters & errors)
@@ -106,3 +106,4 @@ are shown. In order to get comparable redidual errors the coefficients are norma
 $$ R(x_c, y_c) {\overset{!}{=}} 1 $$
 
 If you click (pick) one result, the corresponding coefficients are shown and the Edit selection is changed to the selected regression parameters:
+![Result Selection](Docu/Result_Selection.png)
