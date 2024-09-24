@@ -181,6 +181,6 @@ The requirements are listed in:
 
 [requirements.txt](requirements.txt "")
 
- *tkintertable* is optional but highly recommended.
+*tkintertable* is optional but highly recommended (no **main dialog** without, see above).
 
 *scikit-image* is purely optional and will add an algorithm of scikit (same results as Fitzgibbon et. al).
