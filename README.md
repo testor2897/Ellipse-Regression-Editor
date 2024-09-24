@@ -55,6 +55,7 @@ The EXE was packaged with pyinstaller. There is a spec file for Pyinstaller Pack
 
 [fitEllipse.spec](fitEllipse.spec "")
 
+
 ## Main dialog
 The main dialog:
 ![GUI Details](Docu/GUI_Details.png)
@@ -83,9 +84,10 @@ In this area you can:
 - start regression and show results (&lt;*ENTER*&gt; key)
 - cancel (exit programm, &lt;*ESC*&gt; key)
 
+
 ## Result dialog
 The result dialog:
-![Result Details](Docu/Result_Details.png)
+![Result - Details](Docu/Result_Details.png)
 is divided into 4 areas:
 
 ### Regression results (parameters & errors)
@@ -106,4 +108,55 @@ are shown. In order to get comparable redidual errors the coefficients are norma
 $$ R(x_c, y_c) {\overset{!}{=}} 1 $$
 
 If you click (pick) one result, the corresponding coefficients are shown and the Edit selection is changed to the selected regression parameters:
-![Result Selection](Docu/Result_Selection.png)
+![Result - Selection](Docu/Result_Selection.png)
+
+### Regression results (plots and nearest points)
+The regression ellipses are plotted (including center, axes and nearest points).
+If you click (pick) one result plot, the corresponding coefficients are shown and the Edit selection is changed to the selected regression parameters (see above).
+
+### Coefficients of selected regression ellipse (only shown during selection of results)
+The coefficients of the selected regression ellipse are shown.
+Selection can be canceled by clicking into the space between results (not available in **editor mode**).
+
+### Command buttons
+In this area you can:
+- load a paramater set from csv-file (example see below) as custom ellipse. Automatically the **editor mode** will be activated. 
+- edit ellipse will activate **editor mode** with custom parameters of preselected parameters / last edited parameters.
+
+
+## Editor mode
+The editor mode:
+![Result - Editor](Docu/Result_Editor.png)
+has an additional parameter set (custom), a command button and editor tools.
+
+### Additional custom parameter set (**editor mode** only)
+An additional parameter set (custom) is shown in **editor mode** only. All changes are updated in realtime (depending on computer). The paramters are changes via editor tools or loading of parameters (see above)
+
+### Additional Save button (**editor mode** only)
+The current custom ellipse parameters including errors and data points will be saved as csv-file.
+
+### Editor tools (**editor mode** only)
+The custom parameters are changed via sliders, text inputs, decrements and increments. Custom parameters, coefficients and the plot is updated in realtime (depending on computer).
+
+
+## Files: Data points and parameters
+Data points can be save from the **main dialog** or as part of the parameter file in **editor mode**.
+Standalone data point files should be formatted as american csv-files (x and y in 2 columns, no header):
+
+[Sample](Sample_Data/Sample_15.csv "")
+
+For compatibility reason headers are accepted:
+
+[Sample Header](Sample_Data/Sample_16.csv "")
+
+as well as x nad y in rows:
+
+[Sample Rows](Sample_Data/Sample_17.csv "")
+
+as well as German csv format:
+
+[Sample German](Sample_Data/Sample_18.csv "")
+
+Autodetection will detect correct format in most cases.
+
+
