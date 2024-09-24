@@ -51,12 +51,13 @@ The advantage of this start type is that no manual installation of Python module
 
 ## Start with *fitEllipse.exe* (Package directory)
 The program is started as standalone EXE (windows only). No Python is neccessary.
-The EXE was packaged with pyinstaller.
+The EXE was packaged with pyinstaller. There is a spec file for Pyinstaller Packager (windows version):
 
+[fitEllipse.spec](fitEllipse.spec "")
 
 ## Main dialog
 The main dialog:
-![GUI](GUI_Details.png)
+![GUI](Docu/GUI_Details.png)
 is divided into 4 areas:
 
 ### Selection area
