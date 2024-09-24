@@ -141,6 +141,7 @@ The custom parameters are changed via sliders, text inputs, decrements and incre
 
 ## Files: Data points and parameters
 Data points can be save from the **main dialog** or as part of the parameter file in **editor mode**.
+
 Standalone data point files should be formatted as american csv-files (x and y in 2 columns, no header):
 
 [Sample](Sample_Data/Sample_15.csv "")
@@ -149,14 +150,17 @@ For compatibility reason headers are accepted:
 
 [Sample Header](Sample_Data/Sample_16.csv "")
 
-as well as x nad y in rows:
+as well as x nad y in rows with other separators (tab, space or semicolon):
 
 [Sample Rows](Sample_Data/Sample_17.csv "")
 
-as well as German csv format:
+as well as German csv format (preview is disturbed!):
 
 [Sample German](Sample_Data/Sample_18.csv "")
 
 Autodetection will detect correct format in most cases.
 
+Parameter files are separated into the parameter and the data point section (don't change headers).
+[Sample Parameter](Sample_Data/Para_Custom.csv "")
 
+It is possible to use parameter files as input for data files (**main dialog**).
