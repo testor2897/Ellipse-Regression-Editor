@@ -25,7 +25,7 @@ The parameters of the found regression ellipse can be edited, loaded and saved.
 
 ## Start with *fitEllipse.py*
  
-The program is started directly with fitEllipse.py (requirements see above).
+The program is started directly with fitEllipse.py (requirements see above). Dialogs can be closed by pressing &lt;*ESC*&gt; key.
 
 If *tkintertable* is installed a GUI is shown:
 
@@ -35,12 +35,15 @@ After the regression is started with button
 > Start Regression
  
 the results are displayed via matplotlib:
+
 ![Result](Docu/Result_Example.png)
 
 If *tkintertable* is not installed a console is used (lesser options):
+
 ![Command Line](Docu/Command_Line.png)
 
 After the regression results via matplotlib are closed a summary is shown in the console:
+
 ![Result - Console](Docu/Result_Console.png)
 
 
@@ -59,7 +62,9 @@ The EXE was packaged with pyinstaller. There is a spec file for Pyinstaller Pack
 
 ## Main dialog
 The main dialog:
+
 ![GUI Details](Docu/GUI_Details.png)
+
 is divided into 4 areas:
 
 ### Selection area
@@ -109,6 +114,7 @@ are shown. In order to get comparable redidual errors the coefficients are norma
 $$ R(x_c, y_c) {\overset{!}{=}} 1 $$
 
 If you click (pick) one result, the corresponding coefficients are shown and the Edit selection is changed to the selected regression parameters:
+
 ![Result - Selection](Docu/Result_Selection.png)
 
 ### Regression results (plots and nearest points)
@@ -127,7 +133,9 @@ In this area you can:
 
 ## Editor mode
 The editor mode:
+
 ![Result - Editor](Docu/Result_Editor.png)
+
 has an additional parameter set (custom), a command button and editor tools.
 
 ### Additional custom parameter set (**editor mode** only)
@@ -151,7 +159,7 @@ For compatibility reason headers are accepted:
 
 [Sample Header](Sample_Data/Sample_16.csv "")
 
-as well as x nad y in rows with other separators (tab, space or semicolon):
+as well as x and y in rows with other separators (tab, space or semicolon):
 
 [Sample Rows](Sample_Data/Sample_17.csv "")
 
@@ -161,8 +169,18 @@ as well as German csv format (preview is disturbed!):
 
 Autodetection will detect correct format in most cases.
 
-Parameter files are separated into the parameter and the data point section (don't change headers).
+Parameter files are separated into the parameter and the data point section (don't change header lines).
 
 [Sample Parameter](Sample_Data/Para_Custom.csv "")
 
 It is possible to use parameter files as input for data files (**main dialog**).
+
+
+## Requirements
+The requirements are listed in:
+
+[requirements.txt](requirements.txt "")
+
+ *tkintertable* is optional but highly recommended.
+
+*scikit-image* is purely optional and will add an algorithm of scikit (same results as Fitzgibbon et. al).
