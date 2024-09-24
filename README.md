@@ -105,6 +105,4 @@ are shown. In order to get comparable redidual errors the coefficients are norma
 
 $$ R(x_c, y_c) {\overset{!}{=}} 1 $$
 
-- Regression results (plots and nearest points on ellipse to data points)
-- Legend (overview about shown algorithms)
-- 
+If you click (pick) one result, the corresponding coefficients are shown and the Edit selection is changed to the selected regression parameters:
