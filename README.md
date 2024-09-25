@@ -1,6 +1,6 @@
 ﻿# Fit a 2D ellipse to given data points
 
-This Python program is used for fitting data points to an 2D ellipse.
+This Python program is used for fitting a 2D ellipse to data points (x, y).
 Several different approaches are used and compared to each other. It is programmed in Python 3.7.9. (windows version).
 The parameters of the found regression ellipse can be edited, loaded and saved.
 

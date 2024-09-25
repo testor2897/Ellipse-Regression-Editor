@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css">
+<link rel="stylesheet" href="file:///c:\Users\U411104\.vscode\extensions\goessner.mdmath-2.7.4\themes\default\style.css">
+
+</head>
+<body class="markdown-body">
+<h1 dir="auto" id="fit-a-2d-ellipse-to-given-data-points">Fit a 2D ellipse to given data points</h1>
+<p dir="auto">This Python program is used for fitting a 2D ellipse to data points (x, y).
+Several different approaches are used and compared to each other. It is programmed in Python 3.7.9. (windows version).
+The parameters of the found regression ellipse can be edited, loaded and saved.</p>
+<h2 dir="auto" id="files">Files</h2>
+<table dir="auto">
+<thead dir="auto">
+<tr dir="auto">
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody dir="auto">
+<tr dir="auto">
+<td><em>fitEllipse.py</em></td>
+<td>Main program with the fitting algorithms (Normal start)</td>
+</tr>
+<tr dir="auto">
+<td><em>start_fitEllipse.py</em></td>
+<td>Start of program in a venv environment (it will install all requirements in a venv environment)</td>
+</tr>
+<tr dir="auto">
+<td><a href="requirements.txt">requirements.txt</a></td>
+<td>List of requirements (tkintertable is optional but highly recommended)</td>
+</tr>
+<tr dir="auto">
+<td><em>mainDialog.py</em></td>
+<td>Main dialog (using tkinter + tkintertable)</td>
+</tr>
+<tr dir="auto">
+<td><em>editor.py</em></td>
+<td>Result and editor dialog (using matplotlib)</td>
+</tr>
+<tr dir="auto">
+<td><em>editorConfig.py</em></td>
+<td>Editor configuration file (global variables)</td>
+</tr>
+<tr dir="auto">
+<td><em>fileDialogs.py</em></td>
+<td>File dialogs (open, save, ...)</td>
+</tr>
+<tr dir="auto">
+<td><em>quarticFormula.py</em></td>
+<td>Formulas for quartic equations (including cardanic and quadratic cases)</td>
+</tr>
+<tr dir="auto">
+<td><em>Icon_fitEllipse.ico</em></td>
+<td>Icon file for main dialog</td>
+</tr>
+<tr dir="auto">
+<td><a href="Icon.png">Icon</a></td>
+<td>Icon file for Pyinstaller Packager</td>
+</tr>
+<tr dir="auto">
+<td><em>fitEllipse.spec</em></td>
+<td>Spec file for Pyinstaller Packager (windows version)</td>
+</tr>
+<tr dir="auto">
+<td><em>Docu</em> (directory)</td>
+<td>Documentation files (start ReadMe.html or Readme.md)</td>
+</tr>
+<tr dir="auto">
+<td><em>Package</em> (directory)</td>
+<td>Packaged version of program (windows EXE only)</td>
+</tr>
+<tr dir="auto">
+<td><em>Sample_Data</em> (directory)</td>
+<td>Examples for data points and parameter sets (including data points)</td>
+</tr>
+</tbody>
+</table>
+<h2 dir="auto" id="start-with-fitellipsepy">Start with <em>fitEllipse.py</em></h2>
+<p dir="auto">The program is started directly with fitEllipse.py (requirements see above). Dialogs can be closed by pressing &lt;<em>ESC</em>&gt; key.</p>
+<p dir="auto">If <em>tkintertable</em> is installed a GUI is shown:</p>
+<p dir="auto"><img src="Docu/GUI_Example.png" alt="GUI" data-src="Docu/GUI_Example.png"></p>
+<p dir="auto">After the regression is started with button</p>
+<blockquote dir="auto">
+<p dir="auto">Start Regression</p>
+</blockquote>
+<p dir="auto">the results are displayed via matplotlib:</p>
+<p dir="auto"><img src="Docu/Result_Example.png" alt="Result" data-src="Docu/Result_Example.png"></p>
+<p dir="auto">If <em>tkintertable</em> is not installed a console is used (lesser options):</p>
+<p dir="auto"><img src="Docu/Command_Line.png" alt="Command Line" data-src="Docu/Command_Line.png"></p>
+<p dir="auto">After the regression results via matplotlib are closed a summary is shown in the console:</p>
+<p dir="auto"><img src="Docu/Result_Console.png" alt="Result - Console" data-src="Docu/Result_Console.png"></p>
+<h2 dir="auto" id="start-with-start_fitellipsepy">Start with <em>Start_fitEllipse.py</em></h2>
+<p dir="auto">The program is started within a venv enviropnment. The requirements are installed via pip (downloading libraries). This kind of start will take its time...</p>
+<p dir="auto">The advantage of this start type is that no manual installation of Python modules is neccessary. Extra installation is performed automatically in a separate virtual envorinment (venv). Internet Access is needed.</p>
+<h2 dir="auto" id="start-with-fitellipseexe-package-directory">Start with <em>fitEllipse.exe</em> (Package directory)</h2>
+<p dir="auto">The program is started as standalone EXE (windows only). No Python is neccessary.
+The EXE was packaged with pyinstaller. There is a spec file for Pyinstaller Packager (windows version):</p>
+<p dir="auto"><a href="fitEllipse.spec">fitEllipse.spec</a></p>
+<h2 dir="auto" id="main-dialog">Main dialog</h2>
+<p dir="auto">The main dialog:</p>
+<p dir="auto"><img src="Docu/GUI_Details.png" alt="GUI Details" data-src="Docu/GUI_Details.png"></p>
+<p dir="auto">is divided into 4 areas:</p>
+<h3 dir="auto" id="selection-area">Selection area</h3>
+<p dir="auto">In this area you can:</p>
+<ul dir="auto">
+<li dir="auto">select different example point sets (stored for the session),</li>
+<li dir="auto">load data points from csv- or txt-file (examples below),</li>
+<li dir="auto">create a new set of data points or</li>
+<li dir="auto">change number of data points (appending empty points or deleting points).</li>
+</ul>
+<h3 dir="auto" id="preview-area">Preview area</h3>
+<p dir="auto">In this area you will see a preview of the data points if the are validated (see below).</p>
+<h3 dir="auto" id="data-table-area">Data table area</h3>
+<p dir="auto">In this are you can edit data points (even scientific format is accepted, commas are translated into points).
+In normal cases the input is validated automatically otherways <em>Validate Data</em> command can be issued manually.</p>
+<h3 dir="auto" id="command-buttons">Command buttons</h3>
+<p dir="auto">In this area you can:</p>
+<ul dir="auto">
+<li dir="auto">validate data (check wheter table contains numbers and is complete),</li>
+<li dir="auto">load data points from csv- or txt-file (examples below),</li>
+<li dir="auto">save data points to csv-file,</li>
+<li dir="auto">store current data points as sample (only for this session),</li>
+<li dir="auto">start regression and show results (&lt;<em>ENTER</em>&gt; key)</li>
+<li dir="auto">cancel (exit programm, &lt;<em>ESC</em>&gt; key)</li>
+</ul>
+<h2 dir="auto" id="result-dialog">Result dialog</h2>
+<p dir="auto">The result dialog:
+<img src="Docu/Result_Details.png" alt="Result - Details" data-src="Docu/Result_Details.png">
+is divided into 4 areas:</p>
+<h3 dir="auto" id="regression-results-parameters--errors">Regression results (parameters &amp; errors)</h3>
+<p dir="auto">Next to the Regression results (parameters of regression ellipses) also the geometric Error:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msubsup><mi>d</mi><mi>i</mi><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex"> \sum_{i=1}^n d_i^2 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span></span></eqn></section></math>
+<p dir="auto">and the residual error:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msubsup><mi>R</mi><mi>i</mi><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex"> \sum_{i=1}^n R_i^2 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span></span></eqn></section></math>
+<p dir="auto">with</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi><mo>⋅</mo><msubsup><mi>x</mi><mi>i</mi><mn>2</mn></msubsup><mo>+</mo><mi>b</mi><mo>⋅</mo><msub><mi>x</mi><mi>i</mi></msub><mo>⋅</mo><msub><mi>y</mi><mi>i</mi></msub><mo>+</mo><mi>c</mi><mo>⋅</mo><msubsup><mi>y</mi><mi>i</mi><mn>2</mn></msubsup><mo>+</mo><mi>d</mi><mo>⋅</mo><msub><mi>x</mi><mi>i</mi></msub><mo>+</mo><mi>e</mi><mo>⋅</mo><msub><mi>y</mi><mi>i</mi></msub><mo>+</mo><mi>f</mi></mrow><annotation encoding="application/x-tex"> R(x_i, y_i) = a \cdot x_i^2 + b \cdot x_i \cdot y_i + c \cdot y_i^2 + d \cdot x_i + e \cdot y_i + f </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1111079999999998em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.59445em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1111079999999998em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span></span></eqn></section></math>
+<p dir="auto">are shown. In order to get comparable redidual errors the coefficients are normalized with:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>c</mi></msub><mo separator="true">,</mo><msub><mi>y</mi><mi>c</mi></msub><mo stretchy="false">)</mo><mo lspace="0em" rspace="0em"><mover><mo><mo>=</mo></mo><mo stretchy="false" lspace="0em" rspace="0em">!</mo></mover></mo><mn>1</mn></mrow><annotation encoding="application/x-tex"> R(x_c, y_c) {\overset{!}{=}} 1 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.402978em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord"><span class="mrel"><span class="mop op-limits"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.152978em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">=</span></span></span><span style="top:-3.5668699999999998em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mclose mtight">!</span></span></span></span></span></span></span></span></span></span><span class="mord">1</span></span></span></span></span></eqn></section></math>
+<p dir="auto">If you click (pick) one result, the corresponding coefficients are shown and the Edit selection is changed to the selected regression parameters:</p>
+<p dir="auto"><img src="Docu/Result_Selection.png" alt="Result - Selection" data-src="Docu/Result_Selection.png"></p>
+<h3 dir="auto" id="regression-results-plots-and-nearest-points">Regression results (plots and nearest points)</h3>
+<p dir="auto">The regression ellipses are plotted (including center, axes and nearest points).
+If you click (pick) one result plot, the corresponding coefficients are shown and the Edit selection is changed to the selected regression parameters (see above).</p>
+<h3 dir="auto" id="coefficients-of-selected-regression-ellipse-only-shown-during-selection-of-results">Coefficients of selected regression ellipse (only shown during selection of results)</h3>
+<p dir="auto">The coefficients of the selected regression ellipse are shown.
+Selection can be canceled by clicking into the space between results (not available in <strong>editor mode</strong>).</p>
+<h3 dir="auto" id="command-buttons-1">Command buttons</h3>
+<p dir="auto">In this area you can:</p>
+<ul dir="auto">
+<li dir="auto">load a paramater set from csv-file (example see below) as custom ellipse. Automatically the <strong>editor mode</strong> will be activated.</li>
+<li dir="auto">edit ellipse will activate <strong>editor mode</strong> with custom parameters of preselected parameters / last edited parameters.</li>
+</ul>
+<h2 dir="auto" id="editor-mode">Editor mode</h2>
+<p dir="auto">The editor mode:</p>
+<p dir="auto"><img src="Docu/Result_Editor.png" alt="Result - Editor" data-src="Docu/Result_Editor.png"></p>
+<p dir="auto">has an additional parameter set (custom), a command button and editor tools.</p>
+<h3 dir="auto" id="additional-custom-parameter-set-editor-mode-only">Additional custom parameter set (<strong>editor mode</strong> only)</h3>
+<p dir="auto">An additional parameter set (custom) is shown in <strong>editor mode</strong> only. All changes are updated in realtime (depending on computer). The paramters are changes via editor tools or loading of parameters (see above)</p>
+<h3 dir="auto" id="additional-save-button-editor-mode-only">Additional Save button (<strong>editor mode</strong> only)</h3>
+<p dir="auto">The current custom ellipse parameters including errors and data points will be saved as csv-file.</p>
+<h3 dir="auto" id="editor-tools-editor-mode-only">Editor tools (<strong>editor mode</strong> only)</h3>
+<p dir="auto">The custom parameters are changed via sliders, text inputs, decrements and increments. Custom parameters, coefficients and the plot is updated in realtime (depending on computer).</p>
+<h2 dir="auto" id="files-data-points-and-parameters">Files: Data points and parameters</h2>
+<p dir="auto">Data points can be save from the <strong>main dialog</strong> or as part of the parameter file in <strong>editor mode</strong>.</p>
+<p dir="auto">Standalone data point files should be formatted as american csv-files (x and y in 2 columns, no header):</p>
+<p dir="auto"><a href="Sample_Data/Sample_15.csv">Sample</a></p>
+<p dir="auto">For compatibility reason headers are accepted:</p>
+<p dir="auto"><a href="Sample_Data/Sample_16.csv">Sample Header</a></p>
+<p dir="auto">as well as x and y in rows with other separators (tab, space or semicolon):</p>
+<p dir="auto"><a href="Sample_Data/Sample_17.csv">Sample Rows</a></p>
+<p dir="auto">as well as German csv format (preview is disturbed!):</p>
+<p dir="auto"><a href="Sample_Data/Sample_18.csv">Sample German</a></p>
+<p dir="auto">Autodetection will detect correct format in most cases.</p>
+<p dir="auto">Parameter files are separated into the parameter and the data point section (don't change header lines).</p>
+<p dir="auto"><a href="Sample_Data/Para_Custom.csv">Sample Parameter</a></p>
+<p dir="auto">It is possible to use parameter files as input for data files (<strong>main dialog</strong>).</p>
+<h2 dir="auto" id="requirements">Requirements</h2>
+<p dir="auto">The requirements are listed in:</p>
+<p dir="auto"><a href="requirements.txt">requirements.txt</a></p>
+<p dir="auto"><em>tkintertable</em> is optional but highly recommended (no <strong>main dialog</strong> without, see above).</p>
+<p dir="auto"><em>scikit-image</em> is purely optional and will add an algorithm of scikit (same results as Fitzgibbon et. al).</p>
+
+</body>
+</html>
