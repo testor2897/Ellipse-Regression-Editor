@@ -16,7 +16,7 @@ The parameters of the found regression ellipse can be edited, loaded and saved.
 | *fileDialogs.py* | File dialogs (open, save, ...) |
 | *quarticFormula.py* | Formulas for quartic equations (including cardanic and quadratic cases) |
 | *Icon_fitEllipse.ico* | Icon file for main dialog |
-| [Icon](Icon.png "") | Icon file for Pyinstaller Packager |
+| [Icon.png](Icon.png "") | Icon file for Pyinstaller Packager |
 | *fitEllipse.spec* | Spec file for Pyinstaller Packager (windows version) |
 | *Docu* (directory)| Documentation files (start ReadMe.html or Readme.md) |
 | *Package* (directory)| Packaged version of program (windows EXE only) |
