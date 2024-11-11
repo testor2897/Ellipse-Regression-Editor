@@ -221,3 +221,17 @@ def quartic_formula(a, b, c, d, e):
     # result[3]: 3. solution
     # result[4]: 4. solution
     return result
+
+if __name__ == '__main__':
+    import timeit
+    start = timeit.default_timer()
+    print()
+    for i in range(1, 1000):
+        a = i + 0.5
+        b = a - 11.0
+        result = quartic_formula(a, b, +35.0, -50.0, 24.0)
+        n = result[0]
+        if n > 0:
+            print("i: ", i, "  real roots(", n, "): ", result[1: n + 1])
+    print("The difference of time is :", round(timeit.default_timer() - start, 3))    
+  
